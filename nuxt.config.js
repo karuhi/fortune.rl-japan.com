@@ -38,12 +38,12 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
   generate: {
-    routes() {
-      const list = Array.from(Array(1024).keys()).map((item) => {
-        return '/result/' + (item + 1)
-      })
-      return list
-    },
+    // routes() {
+    //   const list = Array.from(Array(1024).keys()).map((item) => {
+    //     return '/result/' + (item + 1)
+    //   })
+    //   return list
+    // },
     fallback: true,
   },
 }
