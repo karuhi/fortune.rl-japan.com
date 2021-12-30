@@ -35,8 +35,11 @@
           </div>
         </div>
         <div>
-          <label class="block text-slate-400 text-sm font-bold mb-2" for="username">
-            シェア用URL 
+          <label
+            class="block text-slate-400 text-sm font-bold mb-2"
+            for="username"
+          >
+            シェア用URL
           </label>
           <input
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -46,7 +49,9 @@
             ref="cliparea"
             v-model="ShereUrl"
           />
-          <span class="block text-slate-400 text-sm font-bold mb-2 text-slate-400">{{ isCopyCompleted ? 'コピーしました✅' : '' }}</span>
+          <span class="block text-slate-400 text-sm font-bold mb-2">{{
+            isCopyCompleted ? 'コピーしました✅' : ''
+          }}</span>
         </div>
         <div
           class="rounded text-xl text-black bg-white hover:bg-slate-200 py-2 px-12 m-5 cursor-pointer"
