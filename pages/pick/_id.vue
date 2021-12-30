@@ -109,7 +109,7 @@ export default {
     sharePage(platform) {
       if (platform == 'twitter') {
         const stext = encodeURIComponent(
-          '#新春ロケリみくじ でおみくじを引きました！⛩\n新しい年も、ロケットリーグとともに！今年の運勢は？ロケリみくじで今年の運勢を占おう！'
+          '#新春ロケリみくじ でおみくじを引きました！⛩✨\n\n新しい年も、#ロケットリーグ とともに！今年の運勢は？ロケリみくじで今年の運勢を占おう！\n'
         )
         const stag = encodeURIComponent('ロケットリーグ,RL_Japan')
         const url = encodeURIComponent(this.ShareUrl)
