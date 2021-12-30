@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container overflow-hidden">
     <div class="flex items-center justify-center h-screen w-screen flex-wrap">
       <div class="omikuzi sm:max-h-96 md:max-h-96 lg:max-h-96 xl:max-h-96 w-48">
         &nbsp;
@@ -10,18 +10,12 @@
 
 <script>
 export default {
-  name: 'IndexPage',
+  name: 'PickPage',
   mounted() {
     this.$adobeFonts(document)
-    const fortuneNumbers = [
-      this.getRandomInt(0, 3),
-      this.getRandomInt(0, 3),
-      this.getRandomInt(0, 3),
-      this.getRandomInt(0, 3),
-      this.getRandomInt(0, 3),
-    ]
+    const fortuneNumbers = this.getRandomInt(1, 1024)
     setTimeout(() => {
-      this.$router.push('/result/' + fortuneNumbers.join(''))
+      this.$router.push('/pick/' + fortuneNumbers)
     }, 3000)
   },
   methods: {
