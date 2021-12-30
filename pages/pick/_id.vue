@@ -74,7 +74,7 @@ export default {
         {
           hid: 'og:image',
           property: 'og:image',
-          content: require(`@/static/cards/${this.$route.params.id}.jpeg`),
+          content: `https://fortune.rl-japan.com/cards/${this.$route.params.id}.jpeg`,
         },
       ],
     }
