@@ -50,7 +50,7 @@ export default {
       { name: 'twitter:card', content: 'summary' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -75,5 +75,10 @@ export default {
   build: {},
   generate: {
     fallback: true,
+    routes() {
+      return Array.from(Array(1024).keys()).map((item) => {
+        return `pick/${item + 1}`
+      })
+    },
   },
 }

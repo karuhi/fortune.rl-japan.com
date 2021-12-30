@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="flex items-start justify-center h-screen w-screen flex-wrap">
-      <div class="flex mt-20 justify-center w-full">
+      <div class="flex mt-16 justify-center w-full">
         <img src="@/static/assets/logo.png" class="p-5 max-h-40" />
       </div>
       <div class="flex justify-center w-full flex-wrap">
@@ -24,41 +24,42 @@
 
         <div class="flex items-center justify-center w-full">
           <div
-            class="rounded text-xl text-white btn py-2 px-12 m-5 cursor-pointer"
-            @click="sherePage('twitter')"
+            class="rounded text-xl text-white btn py-2 px-10 m-5 cursor-pointer"
+            @click="sharePage('twitter')"
           >
             <img
               class="inline max-h-8 mr-2"
               src="@/static/assets/Twitter_Logo_White.png"
             />
-            ツイート
+            ツイートする
           </div>
         </div>
-        <div>
+        <div
+          class="rounded text-xl text-black bg-white hover:bg-slate-200 py-2 px-10 m-4 cursor-pointer"
+          @click="sharePage('link')"
+        >
+          <img class="inline max-h-8 mr-2" src="@/static/assets/share.svg" />
+          シェアする
+        </div>
+        <div class="flex items-center justify-center w-full flex-wrap m-4">
           <label
-            class="block text-slate-400 text-sm font-bold mb-2"
-            for="username"
+            class="text-slate-400 text-sm font-bold mb-2 w-full text-center"
+            for="shareurl"
           >
             シェア用URL
           </label>
           <input
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            class="shadow appearance-none max-w-full xs:max-w-xs sm:max-w-sm border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             placeholder="https://fortune.rl-japan.com/pick/***"
-            v-if="ShereUrl != undefined"
+            v-if="ShareUrl != undefined"
+            id="shareurl"
             type="text"
             ref="cliparea"
-            v-model="ShereUrl"
+            v-model="ShareUrl"
           />
           <span class="block text-slate-400 text-sm font-bold mb-2">{{
             isCopyCompleted ? 'コピーしました✅' : ''
           }}</span>
-        </div>
-        <div
-          class="rounded text-xl text-black bg-white hover:bg-slate-200 py-2 px-12 m-5 cursor-pointer"
-          @click="sherePage('link')"
-        >
-          <img class="inline max-h-8 mr-2" src="@/static/assets/share.svg" />
-          シェア
         </div>
       </div>
     </div>
@@ -80,11 +81,11 @@ export default {
   },
   mounted() {
     this.$adobeFonts(document)
-    this.ShereUrl = 'https://fortune.rl-japan.com/pick/' + this.$route.params.id
+    this.ShareUrl = 'https://fortune.rl-japan.com/pick/' + this.$route.params.id
   },
   data() {
     return {
-      ShereUrl: undefined,
+      ShareUrl: undefined,
       isCopyCompleted: false,
     }
   },
@@ -105,13 +106,13 @@ export default {
         this.isCopyCompleted = false
       }, 5000)
     },
-    sherePage(platform) {
+    sharePage(platform) {
       if (platform == 'twitter') {
         const stext = encodeURIComponent(
           'ロケリみくじでおみくじを引きました！⛩\n新春ロケリみくじ - ロケットリーグ 日本コミュニティ'
         )
         const stag = encodeURIComponent('ロケットリーグ,RL_Japan')
-        const url = encodeURIComponent(this.ShereUrl)
+        const url = encodeURIComponent(this.ShareUrl)
         const resultUrl =
           'https://twitter.com/intent/tweet?text=' +
           stext +
@@ -123,18 +124,18 @@ export default {
       } else if (platform == 'link') {
         this.isOpen = true
         if (navigator.share) {
-          console.log('[WebShereAPI] 対応')
+          console.log('[WebShareAPI] 対応')
           navigator.share({
             title: document.querySelector('title').textContent,
             text: document
               .querySelector('meta[name="description"]')
               .getAttribute('content'),
-            url: this.ShereUrl,
+            url: this.ShareUrl,
           })
         }
         //サポートしていない場合の処理
         else {
-          console.log('[WebShereAPI] 未対応')
+          console.log('[WebShareAPI] 未対応')
           setTimeout(this.selectText, 500)
         }
       }
