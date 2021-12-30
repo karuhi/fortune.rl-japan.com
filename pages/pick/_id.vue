@@ -109,17 +109,12 @@ export default {
     sharePage(platform) {
       if (platform == 'twitter') {
         const stext = encodeURIComponent(
-          'ロケリみくじでおみくじを引きました！⛩\n新春ロケリみくじ - ロケットリーグ 日本コミュニティ'
+          '#新春ロケリみくじ でおみくじを引きました！⛩\n新しい年も、ロケットリーグとともに！今年の運勢は？ロケリみくじで今年の運勢を占おう！'
         )
         const stag = encodeURIComponent('ロケットリーグ,RL_Japan')
         const url = encodeURIComponent(this.ShareUrl)
-        const resultUrl =
-          'https://twitter.com/intent/tweet?text=' +
-          stext +
-          '&hashtags=' +
-          stag +
-          '&url=' +
-          url
+        const via = encodeURIComponent('RL_Japan')
+        const resultUrl = `https://twitter.com/intent/tweet?text=${stext}&hashtags=${stag}&url=${url}&via=${via}`
         location.href = resultUrl
       } else if (platform == 'link') {
         this.isOpen = true

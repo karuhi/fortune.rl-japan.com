@@ -47,7 +47,7 @@ export default {
         property: 'og:image',
         content: 'https://fortune.rl-japan.com/assets/ogp.png',
       },
-      { name: 'twitter:card', content: 'summary' },
+      { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
     link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }],
