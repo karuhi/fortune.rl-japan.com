@@ -1,3 +1,6 @@
+require('dotenv').config()
+const { GA_ID } = process.env
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
@@ -48,6 +51,7 @@ export default {
         content: 'https://fortune.rl-japan.com/assets/ogp.png',
       },
       { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:site', content: '@RL_Japan' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
     link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }],
@@ -67,9 +71,15 @@ export default {
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
   ],
-
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: [
+    [
+      '@nuxtjs/google-gtag',
+      {
+        id: GA_ID,
+      },
+    ],
+  ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},

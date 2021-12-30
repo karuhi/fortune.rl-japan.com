@@ -10,6 +10,7 @@
       <nuxt-link
         class="flex items-center justify-center btn text-white inline-block py-2 px-5 rounded-full text-4xl"
         to="/pick"
+        @click="pickAnalysis"
       >
         おみくじを引く
       </nuxt-link>
@@ -22,6 +23,16 @@ export default {
   name: 'IndexPage',
   mounted() {
     this.$adobeFonts(document)
+  },
+  methods: {
+    pickAnalysis() {
+      this.$gtag('event', 'omikuzi_pick', {
+        event_category: 'omukuzi_count',
+        event_action: 'click',
+        event_label: this.banner.url,
+        value: 1,
+      })
+    },
   },
 }
 </script>
