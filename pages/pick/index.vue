@@ -15,7 +15,7 @@ export default {
     this.$adobeFonts(document)
     const fortuneNumbers = this.getRandomInt(1, 1024)
     setTimeout(() => {
-      this.$router.push('/pick/' + fortuneNumbers)
+      this.$router.push(`/pick/${fortuneNumbers}?pick=true`)
     }, 3000)
   },
   methods: {

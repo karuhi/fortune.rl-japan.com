@@ -1,6 +1,8 @@
 <template>
   <div class="container">
-    <div class="flex items-start justify-center h-screen w-screen flex-wrap">
+    <div
+      class="flex items-start justify-center h-screen w-screen max-w-full flex-wrap"
+    >
       <div class="flex mt-16 justify-center w-full">
         <img src="@/static/assets/logo.png" class="p-5 max-h-40" />
       </div>
@@ -41,7 +43,9 @@
           <img class="inline max-h-8 mr-2" src="@/static/assets/share.svg" />
           シェアする
         </div>
-        <div class="flex items-center justify-center w-full flex-wrap m-4">
+        <div
+          class="flex items-center justify-center w-full flex-wrap m-4 mb-40"
+        >
           <label
             class="text-slate-400 text-sm font-bold mb-2 w-full text-center"
             for="shareurl"
@@ -63,9 +67,11 @@
         </div>
       </div>
     </div>
+    <playflow :isShow="isShow" />
   </div>
 </template>
 <script>
+import results from '@/static/results.json'
 export default {
   name: 'PickIdPage',
   head() {
@@ -82,11 +88,21 @@ export default {
   mounted() {
     this.$adobeFonts(document)
     this.ShareUrl = 'https://fortune.rl-japan.com/pick/' + this.$route.params.id
+
+    const isAlreadyPick = this.$route.query.pick
+    if (isAlreadyPick != undefined) {
+      if (isAlreadyPick !== null) {
+        console.log(isAlreadyPick)
+        this.isShow = false
+      }
+    }
   },
   data() {
     return {
       ShareUrl: undefined,
       isCopyCompleted: false,
+      isShow: true,
+      results: results,
     }
   },
   validate({ params }) {
@@ -109,9 +125,11 @@ export default {
     sharePage(platform) {
       if (platform == 'twitter') {
         const stext = encodeURIComponent(
-          '#新春ロケリみくじ でおみくじを引きました！⛩✨\n\n新しい年も、#ロケットリーグ とともに！今年の運勢は？ロケリみくじで今年の運勢を占おう！\n'
+          `運勢は【${
+            results.list[parseInt(this.$route.params.id)]
+          }】でした。\n#新春ロケリみくじ でおみくじを引きました！⛩✨\n\n新しい年も、#ロケットリーグ とともに！今年の運勢は？ロケリみくじで今年の運勢を占おう！\n`
         )
-        const stag = encodeURIComponent('ロケットリーグ,RL_Japan')
+        const stag = encodeURIComponent('RL_Japan')
         const url = encodeURIComponent(this.ShareUrl)
         const via = encodeURIComponent('RL_Japan')
         const resultUrl = `https://twitter.com/intent/tweet?text=${stext}&hashtags=${stag}&url=${url}&via=${via}`

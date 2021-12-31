@@ -8,7 +8,7 @@
         />
       </div>
       <nuxt-link
-        class="flex items-center justify-center btn text-white inline-block py-2 px-5 rounded-full text-4xl"
+        class="flex items-center justify-center btn text-white inline-block py-2 px-5 rounded-full text-3xl"
         to="/pick"
         @click="pickAnalysis"
       >
