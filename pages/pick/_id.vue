@@ -126,7 +126,7 @@ export default {
       if (platform == 'twitter') {
         const stext = encodeURIComponent(
           `運勢は【${
-            results.list[parseInt(this.$route.params.id)]
+            results.list[parseInt(this.$route.params.id) - 1]
           }】でした。\n#新春ロケリみくじ でおみくじを引きました！⛩✨\n\n新しい年も、#ロケットリーグ とともに！今年の運勢は？ロケリみくじで今年の運勢を占おう！\n`
         )
         const stag = encodeURIComponent('RL_Japan')
