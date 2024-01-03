@@ -23,6 +23,7 @@ export default {
   name: 'IndexPage',
   mounted() {
     this.$adobeFonts(document)
+    location.href = "https://rl-japan.com"
   },
   methods: {
     pickAnalysis() {
